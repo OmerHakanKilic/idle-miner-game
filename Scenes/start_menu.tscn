@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://duolmf5hxke1d"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_x1qid"]
+[ext_resource type="Texture2D" uid="uid://dnbgnsilw5mo8" path="res://Assets/Sprites/PlayButton.png" id="2_ifabu"]
+[ext_resource type="Texture2D" uid="uid://bpjbvvtubswdl" path="res://Assets/Sprites/SettingsButton.png" id="3_q0u6a"]
+[ext_resource type="Texture2D" uid="uid://bep08gv5drl07" path="res://Assets/Sprites/ExitButton.png" id="4_xyvdh"]
+
+[node name="Start Menu" type="Node2D"]
+script = ExtResource("1_x1qid")
+
+[node name="Play Button" type="TextureButton" parent="."]
+offset_left = 95.0
+offset_top = 22.0
+offset_right = 143.0
+offset_bottom = 54.0
+texture_normal = ExtResource("2_ifabu")
+
+[node name="Settings Button" type="TextureButton" parent="."]
+offset_left = 95.0
+offset_top = 80.0
+offset_right = 143.0
+offset_bottom = 96.0
+texture_normal = ExtResource("3_q0u6a")
+
+[node name="Exit Button" type="TextureButton" parent="."]
+offset_left = 208.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 112.0
+texture_normal = ExtResource("4_xyvdh")
+
+[connection signal="pressed" from="Play Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Exit Button" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ehjl7vykeept"]
+
+[ext_resource type="Script" path="res://Scripts/block.gd" id="1_20jsp"]
+[ext_resource type="Texture2D" uid="uid://ytobvpm1a632" path="res://Assets/Sprites/Blocks/Grass Block.png" id="2_xuwf3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ir2i8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij22y"]
+size = Vector2(14, 14)
+
+[node name="Block" type="StaticBody2D" groups=["Blocks"]]
+physics_material_override = SubResource("PhysicsMaterial_ir2i8")
+script = ExtResource("1_20jsp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_xuwf3")
+region_rect = Rect2(15.6117, 15.8604, 16.0595, 16.521)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ij22y")
+
+[node name="Mining Cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Mining Cooldown" to="." method="_on_mining_cooldown_timeout"]

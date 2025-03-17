@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4v64tyc1iwhy"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_i8qh4"]
+[ext_resource type="Texture2D" uid="uid://7cndc0qkuq6f" path="res://Assets/Sprites/Player.png" id="2_iuv43"]
+[ext_resource type="Texture2D" uid="uid://cc7e05gixtlc8" path="res://Assets/Sprites/Tiles.png" id="3_b0o3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhyk4"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oheh7"]
+size = Vector2(8, 8)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_i8qh4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_iuv43")
+region_rect = Rect2(32.4737, 50.7224, 13.8756, 12.8172)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nhyk4")
+
+[node name="Digging Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Digging Hitbox"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_oheh7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Digging Hitbox/CollisionShape2D"]
+position = Vector2(0, -2.38419e-07)
+scale = Vector2(0.545454, 0.571429)
+texture = ExtResource("3_b0o3k")
+region_enabled = true
+region_rect = Rect2(81.7025, 48.9943, 11.7216, 14.8321)
+
+[node name="Mining Cooldown" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="body_entered" from="Digging Hitbox" to="." method="_on_digging_hitbox_body_entered"]
+[connection signal="body_exited" from="Digging Hitbox" to="." method="_on_digging_hitbox_body_exited"]
+[connection signal="timeout" from="Mining Cooldown" to="." method="_on_mining_cooldown_timeout"]
